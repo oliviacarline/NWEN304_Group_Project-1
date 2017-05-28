@@ -6,7 +6,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 var path = require('path'); 
 var pg = require('pg');
-var connectionString = ""; //change this when deployed to heroku? or use postgres on lab machine
+var connectionString = "postgres://songshan:Chips@depot:5432/songshan_jdbc"; //users, products
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
