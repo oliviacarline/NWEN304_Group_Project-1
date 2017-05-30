@@ -6,7 +6,22 @@ $(document).ready(function(e) {
 		    return obj;
 		}, {});
 
-	    alert(data['username']);
+	    //alert(data['username']);
+
+	    $.ajax({
+			method:'POST',
+			url:'http://localhost:8080/newUser',
+			contentType:'application/json',
+			dataType:'json',
+			data: JSON.stringify({
+				username:data['username'],
+				password:data['password']
+			}),
+			success: function(data){
+				//alert('ajax success');
+			}
+		});
+
 
 	});
 
