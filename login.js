@@ -3,4 +3,9 @@ $(document).ready(function(e) {
 
   console.log('test');
 
+  $('.newAccountButton').click(
+			alert("hi");
+	);
+
+
 });
