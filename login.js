@@ -1,11 +1,10 @@
 $(document).ready(function(e) {
-  $('.loginPage grid_8 omega').hide();
+	$("form[name='newAccountForm']").submit(function() {
+	    // get all the inputs into an array.
+	    var $inputs = $('#myForm :input');
 
-  console.log('test');
+	    alert("hi");
 
-  $('.newAccountButton').click(
-			alert("hi");
-	);
-
+	});
 
 });
