@@ -18,7 +18,7 @@ $(document).ready(function(e) {
 				password:data['password']
 			}),
 			success: function(data){
-				//alert('ajax success');
+				alert('ajax success');
 			}
 		});
 
