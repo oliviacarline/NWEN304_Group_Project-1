@@ -31,28 +31,14 @@ app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 
-//need product table & customer table
-//product table schema - ID (primary key), item name, quantity, UID
-//customer table schema ... need to work this out
+app.post('/newUser', function (req, res) {
 
-//product table - list all products (product name + quantity)
-app.get('/all', function (req, res){ 
+	if (!req.body) return res.sendStatus(400);
 
-});
-
-//product table - return a product by uid
-app.get('/item', function (req, res){ 
-
-});
-
-app.post('/buy', function (req, res) { 
-
-});
-
-app.put('/update', function (req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
 	
-});
-
-app.delete('/delete', function (req, res) {
+	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
+	
 	
 });
