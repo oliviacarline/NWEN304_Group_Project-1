@@ -4,9 +4,12 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 8080;
-var path = require('path'); 
+var path = require('path');
 var pg = require('pg');
-var connectionString = "postgres://songshan:Chips@depot:5432/songshan_jdbc"; //users, products
+var connectionString = "postgres://songshan:Chips@depot:5432/songshan_jdbc";
+
+var client = new pg.Client(connectionString);
+client.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,8 +40,39 @@ app.post('/newUser', function (req, res) {
 
 	var username = req.body.username;
 	var password = req.body.password;
-	
+
 	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
-	
-	
+
+
+});
+
+app.post('/login', function (req, res) {
+
+	if (!req.body) return res.sendStatus(400);
+
+	var username = req.body.username;
+	var password = req.body.password;
+
+	var results = [];
+
+	var query = client.query("SELECT * FROM users WHERE username=($1)", [username]);
+
+	var response = '';
+
+	query.on('row', function(row){
+	  results.push(row);
+		if(row['password'] == password){
+			response = 'ok';
+		}
+		else if(row['password'] != password){
+			response = 'nope';
+		}
+	});
+
+	query.on('end', function() {
+		console.log(response);
+	  res.end(response);
+	});
+
+
 });
