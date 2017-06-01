@@ -1,0 +1,25 @@
+{
+  "name": "nwen304_group_project",
+  "version": "1.0.0",
+  "description": "Shopping website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksandar4567/NWEN304_Group_Project.git"
+  },
+  "author": "Alex West, Olivia Carline, Sarah Song",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "pg": "^6.1.5"
+  },
+  "bugs": {
+    "url": "https://github.com/aleksandar4567/NWEN304_Group_Project/issues"
+  },
+  "homepage": "https://github.com/aleksandar4567/NWEN304_Group_Project#readme"
+}
