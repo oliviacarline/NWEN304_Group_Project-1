@@ -42,7 +42,7 @@ app.get('/', function (req, res) {
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
-
+/*
 //To be moved to login.js (or register???) in /routes
 app.post('/newUser', function (req, res) {
 
@@ -56,6 +56,7 @@ app.post('/newUser', function (req, res) {
 
 });
 
+/*
 //To be moved to login.js in /routes
 app.post('/login', function (req, res) {
 
