@@ -11,6 +11,15 @@ var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a661
 var client = new pg.Client(connectionString);
 client.connect();
 
+//Routes
+/* need to set up login and register files first
+var login = require('.routes/login');
+var register = require('.routes/registe');
+
+app.use('/login', login);
+app.use('/register', register);
+*/
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,3 +85,13 @@ app.post('/login', function (req, res) {
 
 
 });
+
+
+//make routes directory
+
+//variables of relative links
+//eg. var login = require('./routes/login')
+
+//app.use('/login'. login)
+
+//in each .js file (e.g login.js), need to put var router = express.Router();
