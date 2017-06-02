@@ -11,6 +11,9 @@ var connectionString = "postgres://songshan:Chips@depot:5432/songshan_jdbc";
 var client = new pg.Client(connectionString);
 client.connect();
 
+//Routes
+var login = require('.routes/login');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,3 +79,13 @@ app.post('/login', function (req, res) {
 
 
 });
+
+
+//make routes directory
+
+//variables of relative links
+//eg. var login = require('./routes/login')
+
+//app.use('/login'. login)
+
+//in each .js file (e.g login.js), need to put var router = express.Router();
