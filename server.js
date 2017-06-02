@@ -6,7 +6,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 var path = require('path');
 var pg = require('pg');
-var connectionString = "postgres://songshan:Chips@depot:5432/songshan_jdbc";
+var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj";
 
 var client = new pg.Client(connectionString);
 client.connect();
