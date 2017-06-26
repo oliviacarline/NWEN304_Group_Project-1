@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Cheesecake Shop | Checkout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" media="all" href="../public/styles/960.css" />
+<link rel="stylesheet" type="text/css" media="all" href="../public/styles/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="../public/styles/text.css" />
+<link rel="stylesheet" type="text/css" media="all" href="../public/themes/brown/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="../public/style.css" />
+</head>
+<body>
+<div id="warp">
+  <div id="main" class="container_16">
+    <div id="header" class="grid_16">
+      <div id="logo" class="grid_4 alpha">
+        <h1><a href="index.ejs">Cheesecake Shop</a></h1>
+      </div>
+      <div id="headright" class="grid_7 prefix_5 omega">
+        <h3 class="login"><span class="hiUser">Hi, User |</span> <span class="myAccount"><a href="#">My Account</a></span> <a href="#">Logout</a></h3>
+        <p>Subtotal: $ 0.00</p>
+        <p><span class="vChart"><a href="shoppingcart.ejs">View Cart</a></span> <span class="cOut"><a href="checkout.ejs">Checkout</a></span></p>
+      </div>
+    </div>
+    <div id="mainMenu" class="grid_16">
+      <ul>
+        <li><a href="index.ejs">Home</a></li>
+        <li><a href="product-overview.ejs">Cakes</a></li>
+      </ul>
+    </div>
+    <div id="stickySearch" class="grid_16">
+      <div class="search grid_4 omega">
+        <form action="#" method="get">
+          <input type="text" value="Type your keyword" id="s" name="s" onfocus="if (this.value == 'Type your keyword') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type your keyword';}" />
+        </form>
+      </div>
+    </div>
+    <div class="pageInfo grid_16">
+      <div class="dapurBlog grid_11 alpha">
+        <h3>Checkout</h3>
+      </div>
+    </div>
+    <div class="checkout grid_16">
+      <div class="billInfo grid_11 alpha">
+        <form method="post" action="#" id="comment_form">
+          <fieldset>
+            <label for="firstName">First Name: </label>
+            <input type="text" tabindex="1" size="22" value="" id="firstName" name="firstName" class="text" />
+            <br />
+            <label for="lastName">Last Name: </label>
+            <input type="text" tabindex="2" size="22" value="" id="lastName" name="lastName" class="text" />
+            <br />
+            <label for="address">Address:</label>
+            <input type="text" tabindex="4" size="50" value="" id="address" name="address" class="text" />
+            <br />
+            <label for="card">credit card details pls</label>
+            <input type="text" tabindex="4" size="50" value="" id="card" name="card" class="text" />
+            <br />
+            <div class="clear"></div>
+          </fieldset>
+          <p>
+            <input type="submit" value="Place Order &amp; Checkout" id="checkout" name="checkout" class="button" />
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+</html>
