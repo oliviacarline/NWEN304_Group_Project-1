@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
 	 // Website you wish to allow to connect
@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
- res.send('Hello World!');
+ res.render('/views/index');
 });
 
 app.listen(port, function () {
