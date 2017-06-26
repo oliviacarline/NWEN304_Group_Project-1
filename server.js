@@ -225,13 +225,3 @@ require('./routes.js')(app, passport); // load our routes and pass in our app an
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
-
-
-//make routes directory
-
-//variables of relative links
-//eg. var login = require('./routes/login')
-
-//app.use('/login'. login)
-
-//in each .js file (e.g login.js), need to put var router = express.Router();
