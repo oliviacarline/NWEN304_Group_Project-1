@@ -40,61 +40,22 @@ app.use(function (req, res, next) {
 	next();
 });
 
-app.get('/', function (req, res) {
- res.render('/views/index');
-});
+// required for passport
+app.use(session({
+    secret: 'ilovescotchscotchyscotchscotch', // session secret
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+// routes ======================================================================
+require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
-
-/*
-//To be moved to login.js (or register???) in /routes
-app.post('/newUser', function (req, res) {
-
-	if (!req.body) return res.sendStatus(400);
-
-	var username = req.body.username;
-	var password = req.body.password;
-
-	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
-
-
-});
-
-
-//To be moved to login.js in /routes
-app.post('/login', function (req, res) {
-
-	if (!req.body) return res.sendStatus(400);
-
-	var username = req.body.username;
-	var password = req.body.password;
-
-	var results = [];
-
-	var query = client.query("SELECT * FROM users WHERE username=($1)", [username]);
-
-	var response = '';
-
-	query.on('row', function(row){
-	  results.push(row);
-		if(row['password'] == password){
-			response = 'ok';
-		}
-		else if(row['password'] != password){
-			response = 'nope';
-		}
-	});
-
-	query.on('end', function() {
-		console.log(response);
-	  res.end(response);
-	});
-
-
-});
-*/
 
 
 //make routes directory
