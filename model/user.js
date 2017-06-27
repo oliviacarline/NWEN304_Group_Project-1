@@ -1,6 +1,6 @@
 //referenced https://github.com/keithyong/postgres-oauth-example/blob/master/model.js
 
-var DB = require('../db').DB;
+/*var DB = require('../db').DB;
 var knex = DB.knex;
 
 var User = DB.Model.extend({
@@ -22,7 +22,7 @@ var Google = DB.Model.extend({
 // ------------------------------
 // createNewUser
 // ------------------------------
-// Makes a new user in the database with 
+// Makes a new user in the database with
 // automatic incremented ID. Then, returns
 // that user's ID after the user is created.
 function createNewUser(callback) {
@@ -63,4 +63,4 @@ function grabUserCredentials(userId, callback) {
     });
 };
 
-module.exports.Google = Google;
+module.exports.Google = Google;*/
