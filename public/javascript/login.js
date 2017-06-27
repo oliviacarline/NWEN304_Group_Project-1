@@ -1,5 +1,4 @@
 $(document).ready(function(e) {
-	//this part for creating new user
 	$("form[name='newAccountForm']").submit(function() {
 	    // get all the inputs into an array.
 	    var data = $("form[name='newAccountForm']").serializeArray().reduce(function(obj, item) {
@@ -26,7 +25,6 @@ $(document).ready(function(e) {
 
 	});
 
-	//this part for logging in user
 	$("form[name='loginForm']").submit(function() {
 	    // get all the inputs into an array.
 	    var data = $("form[name='loginForm']").serializeArray().reduce(function(obj, item) {

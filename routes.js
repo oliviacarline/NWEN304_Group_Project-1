@@ -1,5 +1,5 @@
- 
-module.exports = function(app, passport) {
+
+/*module.exports = function(app, passport) {
 
     // route for home page
     app.get('/', function(req, res) {
@@ -53,4 +53,4 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-}
+}*/

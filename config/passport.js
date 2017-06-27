@@ -1,6 +1,6 @@
 //reference https://scotch.io/tutorials/easy-node-authentication-google
 
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+/*var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 // load up the user model
 var User = require('../models/user');
@@ -64,4 +64,4 @@ module.exports = function(passport) {
 
     }));
 
-};
+};*/
