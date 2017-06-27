@@ -14,7 +14,7 @@ client.connect();
 //Routes
 // need to set up login and register files first
 var login = require('.routes/login');
-var register = require('.routes/registe');
+var register = require('.routes/register');
 
 app.use('/login', login);
 app.use('/register', register);
