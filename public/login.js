@@ -10,7 +10,7 @@ $(document).ready(function(e) {
 
 	    $.ajax({
 			method:'POST',
-			url:'https://nwen304groupseven.herokuapp.com/newUser',
+			url:'https://nwen304groupseven.herokuapp.com/register',
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
