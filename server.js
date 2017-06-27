@@ -30,6 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'ejs');
 
+app.get('/', function(req, res) {
+        res.render('./views/index.ejs');
+    });
+
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
