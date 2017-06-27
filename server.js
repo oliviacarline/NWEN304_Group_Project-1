@@ -16,6 +16,7 @@ client.connect();
 var login = require('./routes/login');
 var register = require('./routes/register');
 
+
 app.use('/login', login);
 app.use('/register', register);
 
@@ -24,16 +25,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-	 // Website you wish to allow to connect
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	 // // Request methods you wish to allow
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-	 // Request headers you wish to allow ,
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-AllowHeaders');
-	 // Pass to next layer of middleware
-	next();
-});
 
 app.get('/', function (req, res) {
  res.send('Hello World!');
@@ -100,3 +91,4 @@ app.post('/login', function (req, res) {
 //app.use('/login'. login)
 
 //in each .js file (e.g login.js), need to put var router = express.Router();
+module.exports = app;
