@@ -20,17 +20,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 var login = require('./routes/login');
 var register = require('./routes/register');
 
-
 app.use('/login', login);
 app.use('/register', register);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', function(req, res) {
-        res.render('./views/index.ejs');
-    });
 
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
