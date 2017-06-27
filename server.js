@@ -12,13 +12,13 @@ var client = new pg.Client(connectionString);
 client.connect();
 
 //Routes
-/* need to set up login and register files first
+// need to set up login and register files first
 var login = require('.routes/login');
 var register = require('.routes/registe');
 
 app.use('/login', login);
 app.use('/register', register);
-*/
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
