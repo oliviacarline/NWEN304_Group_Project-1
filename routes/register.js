@@ -23,5 +23,10 @@ router.post('/', function (req, res) {
 
 
 });
+
+//Check passwords match
+//Add gen_salt
+//Later, make it ajax call (so if pw incorrect, stays on same page)
+
 //ADDED
 module.exports = router;
