@@ -8,10 +8,6 @@ var path = require('path');
 var pg = require('pg');
 var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj";
 
-//Setup PostgreSQL db
-var client = new pg.Client(connectionString);
-client.connect();
-
 /*Start https---------------------
 Testing out https - sourced mostly from link below
 https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
@@ -37,6 +33,10 @@ var credentials = {
 var app = express();
 var express = require('express');
 /*End https ------------------------*/
+
+//Setup PostgreSQL db
+var client = new pg.Client(connectionString);
+client.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
