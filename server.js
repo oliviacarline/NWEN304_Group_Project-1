@@ -57,8 +57,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Change below to https.createServer(options, app).listen(.....
 
-//app.listen(port, function () {
- https.createServer(credentials, app).listen(port, function () {
+app.listen(port, function () {
+ //https.createServer(credentials, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 

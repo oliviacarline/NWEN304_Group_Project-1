@@ -40,5 +40,7 @@ router.post('/', function (req, res) {
 
 });
 
+//Note: Redirect page to search, if login works
+
 //ADDED
 module.exports = router;

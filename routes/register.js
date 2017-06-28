@@ -19,13 +19,17 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
-	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
+	/*Begin hash of password*/
+	var hash = crypt('"+password+"', gen_salt('bf', 8));
+	/*End hash of password*/
+
+	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,hash]);
 
 
 });
 
 //Check passwords match
-//Add gen_salt
+//Add gen_salt crypt('"+password+"',)
 //Later, make it ajax call (so if pw incorrect, stays on same page)
 
 //ADDED
