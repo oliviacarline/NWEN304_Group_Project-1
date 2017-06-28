@@ -30,8 +30,8 @@ var credentials = {
 };
 
 //Moved from top of file, down to here
-var app = express();
 var express = require('express');
+var app = express();
 /*End https ------------------------*/
 
 //Setup PostgreSQL db
