@@ -19,7 +19,7 @@ openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.p
 */
 
 var fs = require('fs');
-var http = require('http');
+var https = require('https');
 
 var privateKey = fs.readFileSync('privatekey.pem').toString();
 var certificate = fs.readFileSync('certficate.pem').toString(); //Oops spelt certficate wrong when creating key.
