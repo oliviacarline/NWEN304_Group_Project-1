@@ -8,24 +8,9 @@ var path = require('path');
 var pg = require('pg');
 var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj";
 
+//Setup PostgreSQL db
 var client = new pg.Client(connectionString);
 client.connect();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-
-//Routes
-// need to set up login and register files first
-var login = require('./routes/login');
-var register = require('./routes/register');
-
-app.use('/login', login);
-app.use('/register', register);
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 /*Start https---------------------
 Testing out https - sourced mostly from link below
@@ -51,14 +36,29 @@ var credentials = {
 //Moved from top of file, down to here
 var app = express();
 var express = require('express');
+/*End https ------------------------*/
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Routes
+// need to set up login and register files first
+var login = require('./routes/login');
+var register = require('./routes/register');
+
+app.use('/login', login);
+app.use('/register', register);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Change below to https.createServer(options, app).listen(.....
 //NOTE: above wasn't working, testing again with original code
-
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
-/*End https ------------------------*/
 
 //Https Change
 //module.exports = app;
