@@ -55,8 +55,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Change below to https.createServer(options, app).listen(.....
-//NOTE: above wasn't working, testing again with original code
-app.listen(port, function () {
+
+//app.listen(port, function () {
+ https.createServer(options, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 
