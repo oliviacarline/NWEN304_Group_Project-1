@@ -22,7 +22,7 @@ var fs = require('fs');
 var http = require('http');
 
 var privateKey = fs.readFileSync('privatekey.pem').toString();
-var certificate = fs.readFileSync('certificate.pem').toString();
+var certificate = fs.readFileSync('certficate.pem').toString(); //Oops spelt certficate wrong when creating key.
 
 var credentials = {
   privateKey: privateKey,
