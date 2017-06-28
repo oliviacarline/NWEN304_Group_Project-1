@@ -1,8 +1,8 @@
-var express = require('express');
+//var express = require('express');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
-var app = express();
+//var app = express();
 var port = process.env.PORT || 8080;
 var path = require('path');
 var pg = require('pg');
@@ -33,6 +33,7 @@ https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-nod
 Need to generate privatekey.pem and certificate.pem using the following commands:
 openssl genrsa -out privatekey.pem 1024
 openssl req -new -key privatekey.pem -out certrequest.csr
+password for above = httpstestpassword
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
 */
 
@@ -47,22 +48,17 @@ var credentials = {
   certificate: certificate
 };
 
-//Change below to https.createServer(options, app).listen(.....
+//Moved from top of file, down to here
+var app = express();
+var express = require('express');
 
-//app.listen(port, function () {
-https.createServer(credentials, app).listen(port, function() {
+//Change below to https.createServer(options, app).listen(.....
+//NOTE: above wasn't working, testing again with original code
+
+app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 /*End https ------------------------*/
-
-//make routes directory
-
-//variables of relative links
-//eg. var login = require('./routes/login')
-
-//app.use('/login'. login)
-
-//in each .js file (e.g login.js), need to put var router = express.Router();
 
 //Https Change
 //module.exports = app;
