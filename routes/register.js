@@ -21,9 +21,10 @@ router.post('/', function (req, res) {
 
 	/*Begin hash of password*/
 	var hash = crypt('"+password+"', gen_salt('bf', 8));
+	password = hash;
 	/*End hash of password*/
 
-	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,hash]);
+	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
 
 
 });

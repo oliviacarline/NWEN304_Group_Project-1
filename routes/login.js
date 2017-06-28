@@ -17,6 +17,11 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
+	/*Begin hash of password*/
+	var hash = crypt('"+password+"', gen_salt('bf', 8));
+	passwrd = hash;
+	/*End hash of password*/
+
 	var results = [];
 
 	var query = client.query("SELECT * FROM users WHERE username=($1)", [username]);
