@@ -47,3 +47,5 @@ router.post('/', function (req, res) {
 
 //ADDED
 module.exports = router;
+
+//TODO: hash the password
