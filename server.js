@@ -36,10 +36,13 @@ passport.use(new FacebookStrategy({
     clientSecret: "3cb380748f6d639cd28e8238648fa224",
     callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
+
+
+    return cb(null, profile);
+  // function(accessToken, refreshToken, profile, cb) {
+  //   User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+  //     return cb(err, user);
+  //   });
   }
 ));
 
