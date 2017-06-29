@@ -27,6 +27,16 @@ var credentials = {
   cert: certificate
 };
 
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
 //Moved from top of file, down to here
 var express = require('express');
 var app = express();
@@ -96,10 +106,9 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    /*User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
       return cb(err, user);
-    });*/
-    
+    });
   }
 ));
 
