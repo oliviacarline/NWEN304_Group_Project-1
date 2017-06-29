@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Cheesecake Shop | ShoppingCart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" media="all" href="/styles/960.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/styles/reset.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/styles/text.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/themes/brown/style.css" />
+</head>
+<body>
+<div id="warp">
+  <div id="main" class="container_16">
+    <div id="header" class="grid_16">
+      <div id="logo" class="grid_4 alpha">
+        <h1><a href="/">Cheesecake Shop</a></h1>
+      </div>
+      <div id="headright" class="grid_7 prefix_5 omega">
+        <p>Login or Register with:</p>
+      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google+</a>
+        <h3 class="login"><a href="loginpage">Sign up</a> / <a href="loginpage">Login</a></h3>
+        <p><span class="vChart"><a href="shoppingcartpage">View Cart</a></span> <span class="cOut"><a href="checkoutpage">Checkout</a></span></p>
+      </div>
+    </div>
+    <div id="mainMenu" class="grid_16">
+      <ul>
+        <li><a href="/" class="aActive">Home</a></li>
+        <li><a href="productpage">Cakes</a></li>
+      </ul>
+    </div>
+    <div id="stickySearch" class="grid_16">
+      <div class="search grid_4 omega">
+        <form action="#" method="get">
+          <input type="text" value="Type your keyword" id="s" name="s" onfocus="if (this.value == 'Type your keyword') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type your keyword';}" />
+        </form>
+      </div>
+    </div>
+    <div class="prodNav grid_16">
+      <div class="prodHeadline grid_16">
+        <h3>Your Shopping Cart</h3>
+      </div>
+    </div>
+    <div class="bodyContent grid_16">
+      <div class="shopCart grid_16 alpha">
+        <div class="headCart grid_16 alpha">
+          <div class="itemHead grid_9 alpha"> Item Description</div>
+          <div class="priceHead grid_2"> Price</div>
+          <div class="qtyHead grid_1"> Qty</div>
+        </div>
+        <form action="#" method="get">
+          <div class="bodyCart grid_16 alpha">
+            <div class="warpCart">
+              <div class="item grid_9 alpha">
+                <p><a href="#"><img src="/images/flickr1.jpg" alt="" /></a> Delicious Cheesecake in Huge Pan With Choco Slices<br />
+                  <span>Size: Large (24pcs)</span></p>
+              </div>
+              <div class="price grid_2">
+                <p>$0.00</p>
+              </div>
+              <div class="qty grid_1">
+                <input type="text" size="1" value="" name="Qty" />
+              </div>
+            </div>
+          </div>
+          <div class="footCart grid_16 alpha">
+            <div class="grandTotal grid_3 prefix_11 alpha"> Grand Total</div>
+            <div class="totalPrice grid_2 omega"> $ 0.00</div>
+          </div>
+          <div class="buttonCart grid_16 alpha">
+            <input type="submit" value="Checkout" name="Checkout" class="checkoutCart" />
+            <div class="clear"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+</html>
