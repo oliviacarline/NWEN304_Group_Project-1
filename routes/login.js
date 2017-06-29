@@ -18,8 +18,8 @@ router.post('/', function (req, res) {
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 	PS change below code*/
-	var hash = crypt('"+password+"', gen_salt('bf', 8));
-	password = hash;
+	//var hash = crypt('"+password+"', gen_salt('bf', 8));
+	//password = hash;
 	/*End hash of password*/
 
 	const results = [];
@@ -34,11 +34,11 @@ router.post('/', function (req, res) {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
 				console.log('login successful');
-				res.send({
-					"code":200,
-					"success":"login successful"
-				});
-				res.render('/checkout');
+				//res.send({
+					//"code":200,
+					//"success":"login successful"
+				//});
+				res.redirect('/');
 			}else{
 				console.log('incorrect password');
 				res.send({
