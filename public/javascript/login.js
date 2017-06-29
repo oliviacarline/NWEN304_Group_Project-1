@@ -10,7 +10,7 @@ $(document).ready(function(e) {
 
 	    $.ajax({
 			method:'POST',
-			url:'http://localhost:8080/register',
+			url:'https://nwen304groupseven.herokuapp.com',
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
@@ -35,7 +35,7 @@ $(document).ready(function(e) {
 
 	    $.ajax({
 			method:'POST',
-			url:'http://localhost:8080/login',
+			url:'https://nwen304groupseven.herokuapp.com',
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
