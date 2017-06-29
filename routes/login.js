@@ -11,6 +11,15 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
+
+	/*Begin hash of password
+	See this site for details
+	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
+	PS change below code*/
+	//var hash = crypt('"+password+"', gen_salt('bf', 8));
+	//password = hash;
+	/*End hash of password*/
+
 	connection.query("SELECT * FROM users WHERE username=($1)", [username], function(error, results, fields) {
 
 		console.log(results);
@@ -46,6 +55,8 @@ router.post('/', function (req, res) {
 
 
 });
+
+//Note: Redirect page to search, if login works
 
 //ADDED
 module.exports = router;
