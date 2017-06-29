@@ -91,8 +91,8 @@ app.listen(port, function () {
 
 
 passport.use(new FacebookStrategy({
-    clientID: "317762215347593",
-    clientSecret: "982f129456b0f644ec817aa1fe93e288",
+    clientID: "468550980177208",
+    clientSecret: "3cb380748f6d639cd28e8238648fa224",
     callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
