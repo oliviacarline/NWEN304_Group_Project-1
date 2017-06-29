@@ -18,7 +18,7 @@ $(document).ready(function(e) {
 				password:data['password']
 			}),
 			success: function(data){
-				console.log(data)
+				console.log(data);
 			}
 		});
 
@@ -43,7 +43,7 @@ $(document).ready(function(e) {
 				password:data['password']
 			}),
 			success: function(data){
-				console.log(data)
+				console.log(data);
 			}
 		});
 
