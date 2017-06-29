@@ -1,3 +1,5 @@
+/* Do we need this file/can it be deleted? Should this all be in server.js?*/
+
 
 /*module.exports = function(app, passport) {
 

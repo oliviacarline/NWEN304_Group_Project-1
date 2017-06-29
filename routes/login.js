@@ -17,7 +17,10 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
-	/*Begin hash of password*/
+	/*Begin hash of password
+	See this site for details
+	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
+	PS change below code*/
 	var hash = crypt('"+password+"', gen_salt('bf', 8));
 	passwrd = hash;
 	/*End hash of password*/
