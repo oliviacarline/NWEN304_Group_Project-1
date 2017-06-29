@@ -1,78 +1,118 @@
-var express = require('express');
+//var express = require('express');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
-var app = express();
 var port = process.env.PORT || 8080;
-var path = require('path');
-var pg = require('pg');
-var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj";
+var connectionPool = require('./config/database');
+/*Start https---------------------
+Testing out https - sourced mostly from link below
+https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
+Need to generate privatekey.pem and certificate.pem using the following commands:
+openssl genrsa -out privatekey.pem 1024
+openssl req -new -key privatekey.pem -out certrequest.csr
+password for above = httpstestpassword
+openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
+*/
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
+var fs = require('fs');
+var http = require('http'); //Test, if works then remove this line
+var https = require('https');
 
-var client = new pg.Client(connectionString);
-client.connect();
+var privateKey = fs.readFileSync('privatekey.pem').toString();
+var certificate = fs.readFileSync('certficate.pem').toString(); //Oops spelt certficate wrong when creating key.
+
+var credentials = {
+  key: privateKey,
+  cert: certificate
+};
+
+//Moved from top of file, down to here
+var express = require('express');
+var app = express();
+
+
+/*End https ------------------------*/
+
+//Setup PostgreSQL db
+//NOTE: pg wasdeleted
+//var client = new pg.Client(connectionString);
+//client.connect();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+//routes for webpages using EJS
+app.get('/', function (req, res){
+	res.render('index');
+});
+
+app.get('/loginpage', function (req, res){
+	res.render('login');
+});
+
+app.get('/checkoutpage', function (req, res){
+	res.render('checkout');
+});
+
+app.get('/productpage', function (req, res){
+	res.render('product-overview');
+});
+
+app.get('/shoppingcartpage', function (req, res){
+	res.render('shoppingcart');
+});
+
+//Routes
+// need to set up login and register files first
+var login = require('./routes/login');
+var register = require('./routes/register');
+//var search = require('.routes/search');
+
+//app.use('/search', search)
+app.use('/login', login);
+app.use('/register', register);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-	 // Website you wish to allow to connect
-	res.setHeader('Access-Control-Allow-Origin', '*')
-	 // // Request methods you wish to allow
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-	 // Request headers you wish to allow ,
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-AllowHeaders');
-	 // Pass to next layer of middleware
-	next();
-});
-
-app.get('/', function (req, res) {
- res.send('Hello World!');
-});
+//Change below to https.createServer(options, app).listen(.....
 
 app.listen(port, function () {
+ //https.createServer(credentials, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 
-app.post('/newUser', function (req, res) {
 
-	if (!req.body) return res.sendStatus(400);
-
-	var username = req.body.username;
-	var password = req.body.password;
-
-	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
-
-
-});
-
-app.post('/login', function (req, res) {
-
-	if (!req.body) return res.sendStatus(400);
-
-	var username = req.body.username;
-	var password = req.body.password;
-
-	var results = [];
-
-	var query = client.query("SELECT * FROM users WHERE username=($1)", [username]);
-
-	var response = '';
-
-	query.on('row', function(row){
-	  results.push(row);
-		if(row['password'] == password){
-			response = 'ok';
-		}
-		else if(row['password'] != password){
-			response = 'nope';
-		}
-	});
-
-	query.on('end', function() {
-		console.log(response);
-	  res.end(response);
-	});
+passport.use(new FacebookStrategy({
+    clientID: "317762215347593",
+    clientSecret: "982f129456b0f644ec817aa1fe93e288",
+    callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 
-});
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+//Https Change
+//module.exports = app;
+module.exports = https;
