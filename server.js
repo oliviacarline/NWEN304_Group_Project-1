@@ -76,7 +76,7 @@ var register = require('./routes/register');
 
 //app.use('/search', search)
 app.use('/login', login);
-app.use('/register', register);
+//app.use('/register', register);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
