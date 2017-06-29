@@ -1,34 +1,43 @@
 var express = require('express');
 var router = express.Router();
-var connectionString = 'postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj';
-var pg = require('pg');
 
-var client = new pg.Client(connectionString);
-client.connect();
-
-//var app = express();
+var connection = require('../config/config');
 
 //Creating/registering a new user
 //changed this from app to router. test
 router.post('/', function (req, res) {
-
-	console.log("in register");
 
 	if (!req.body) return res.sendStatus(400);
 
 	var username = req.body.username;
 	var password = req.body.password;
 
+
 	/*Begin hash of password
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 	PS change below code*/
-	var hash = crypt('"+password+"', gen_salt('bf', 8));
-	password = hash;
+	//var hash = crypt('"+password+"', gen_salt('bf', 8));
+	//password = hash;
 	/*End hash of password*/
 
-	var query = client.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password]);
+	connection.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password], function(error, results, fields) {
 
+			if(error){
+				console.log("error occurred", error);
+				res.send({
+					"code":400,
+					"failed":"error occured"
+				});
+			}else{
+				console.log("success");
+				res.send({
+					"code":200,
+					"success":"user registered successfully"
+				});
+			}
+
+	});
 
 });
 

@@ -4,9 +4,6 @@ var path = require('path');
 var bodyParser = require('body-parser');
 //var app = express();
 var port = process.env.PORT || 8080;
-var path = require('path');
-var pg = require('pg');
-var connectionString = "postgres://lzffldlqkadbir:3c1cc00bb2b3b7bce086033be0a66167c9bb87c835ef455e3b60ae38cdcd27f0@ec2-23-21-220-167.compute-1.amazonaws.com:5432/dbuuirtv8ccpbj";
 
 /*Start https---------------------
 Testing out https - sourced mostly from link below
@@ -36,12 +33,38 @@ var app = express();
 /*End https ------------------------*/
 
 //Setup PostgreSQL db
-var client = new pg.Client(connectionString);
-client.connect();
+//NOTE: pg wasdeleted
+//var client = new pg.Client(connectionString);
+//client.connect();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+//routes for webpages using EJS
+app.get('/', function (req, res){
+	res.render('index');
+});
+
+app.get('/loginpage', function (req, res){
+	res.render('login');
+});
+
+app.get('/checkoutpage', function (req, res){
+	res.render('checkout');
+});
+
+app.get('/productpage', function (req, res){
+	res.render('product-overview');
+});
+
+app.get('/shoppingcartpage', function (req, res){
+	res.render('shoppingcart');
+});
 
 //Routes
 // need to set up login and register files first
