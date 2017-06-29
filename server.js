@@ -96,9 +96,10 @@ passport.use(new FacebookStrategy({
     callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    /*User.findOrCreate({ facebookId: profile.id }, function (err, user) {
       return cb(err, user);
-    });
+    });*/
+    
   }
 ));
 
