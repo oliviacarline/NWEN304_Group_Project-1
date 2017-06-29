@@ -2,9 +2,9 @@
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
-var app = express();
+//var app = express();
 var port = process.env.PORT || 8080;
-var connectionPool = require('./config/database');
+
 /*Start https---------------------
 Testing out https - sourced mostly from link below
 https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
@@ -70,9 +70,7 @@ app.get('/shoppingcartpage', function (req, res){
 // need to set up login and register files first
 var login = require('./routes/login');
 var register = require('./routes/register');
-var search = require('.routes/search')(app, connectionPool);
 
-app.use('/search', search)
 app.use('/login', login);
 app.use('/register', register);
 
