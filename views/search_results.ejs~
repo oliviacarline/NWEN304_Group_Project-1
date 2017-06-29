@@ -1,22 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Cheesecake Shop</title>
+<title>Cheesecake Shop | Product Overview</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" media="all" href="/styles/960.css" />
-<link rel="stylesheet" type="text/css" media="all" href="/styles/reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="/styles/text.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/styles/reset.css" />
 <link rel="stylesheet" type="text/css" media="all" href="/style.css" />
 <link rel="stylesheet" type="text/css" media="all" href="/themes/brown/style.css" />
-<script src="/scripts/jquery.min.js"></script>
-<script src="/scripts/jquery-ui.min.js"></script>
 </head>
 <body>
 <div id="warp">
   <div id="main" class="container_16">
     <div id="header" class="grid_16">
       <div id="logo" class="grid_4 alpha">
-        <h1><a href="index.ejs">Cheesecake Shop</a></h1>
+        <h1><a href="/">Cheesecake Shop</a></h1>
       </div>
       <div id="headright" class="grid_7 prefix_5 omega">
         <p>Login or Register with:</p>
@@ -27,39 +25,57 @@
     </div>
     <div id="mainMenu" class="grid_16">
       <ul>
-        <li><a href="/" class="aActive">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="productpage">Cakes</a></li>
       </ul>
     </div>
-    <div class="search-bar center">
-    <form action="/search" method="post">
-        <div class="input-group">
-            <input class="form-control" name="keyword" id="keyword-search" placeholder="Search for...">
-            <div class="input-group-btn">
-                <button class="btn btn-default search-button" type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="products grid_16">
-      <div class="productsWarp">
-        <ul>
-          <li><a href="productpage"><img src="/images/cake1.jpg" alt="" width="938" height="398" /></a></li>
-        </ul>
+    <div id="stickySearch" class="grid_16">
+      <div class="search grid_4 omega">
+        <form action="#" method="get">
+          <input type="text" value="Type your keyword" id="s" name="s" onfocus="if (this.value == 'Type your keyword') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type your keyword';}" />
+        </form>
       </div>
     </div>
+    
+ 
+
+                <h1>Search Results</h1>
+
+
+                    <div class="product-panel">
+                        <h3>Products</h3>
+                        <ul>
+                            <% for (let product of results.products) { %>
+                            <li>
+                                Product: <%= product.productname %>
+                            </li>
+                            <% } %>
+                        </ul>
+                    </div>
+
+                
+          
+
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
   <div class="clear"></div>
 </div>

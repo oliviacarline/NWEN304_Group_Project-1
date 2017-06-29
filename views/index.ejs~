@@ -31,28 +31,13 @@
         <li><a href="productpage">Cakes</a></li>
       </ul>
     </div>
-    <div class="search-bar center">
-    <form action="/search" method="post">
-        <div class="input-group">
-            <input class="form-control" name="keyword" id="keyword-search" placeholder="Search for...">
-            <div class="input-group-btn">
-                <button class="btn btn-default search-button" type="submit">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-    
-    
-    
-    
-    
-    
-    
-    
+    <div id="stickySearch" class="grid_16">
+      <div class="search grid_4 omega">
+        <form action="#" method="get">
+          <input type="text" value="Type your keyword" id="s" name="s" onfocus="if (this.value == 'Type your keyword') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type your keyword';}" />
+        </form>
+      </div>
+    </div>
     <div class="products grid_16">
       <div class="productsWarp">
         <ul>
