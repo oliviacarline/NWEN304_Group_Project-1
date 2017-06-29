@@ -22,23 +22,24 @@ router.post('/', function (req, res) {
 	//password = hash;
 	/*End hash of password*/
 
-	const qresults = [];
+	const results = [];
 
 	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username]);
 
 	query.on('row', (row) => {
-		qresults.push(row);
+		results.push(row);
 	});
 
 	query.on('end', () => {
-		//console.log(results[0]['password']);
-
-		if(qresults[0]['password'] == password){
-			console.log('aaaaaaaaaaaaaaaaa');
-			res.send({
-				"code":200,
-				"success":"login successful"
-			});
+		if(results.length > 0){
+			if(results[0]['password'] == password){
+				console.log('login successful');
+				res.render('index');
+			}else{
+				console.log('incorrect password');
+			}
+		}else{
+			console.log("username doesn't exit");
 		}
 
 	});
@@ -93,7 +94,6 @@ router.post('/', function (req, res) {
 //ADDED
 module.exports = router;
 
-//TODO: stop getting a empty response from query.
 //TODO: check hash of password
 //TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
 //TODO: express-sessions??? extra for experts
