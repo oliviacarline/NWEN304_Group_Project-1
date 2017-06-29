@@ -34,6 +34,7 @@ router.post('/', function (req, res) {
 		//console.log(results[0]['password']);
 
 		if(qresults[0]['password'] == password){
+			console.log('aaaaaaaaaaaaaaaaa');
 			res.send({
 				"code":200,
 				"success":"login successful"
