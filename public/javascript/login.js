@@ -1,8 +1,13 @@
-$(document).ready(function(e) {
+$(document).ready(function() {
+	alert("ready");
+});
 
+do_register = function(){
 	//this part for user registration
-	$("form[name='newAccountForm']").submit(function() {
+	//$("form[name='newAccountForm']").submit(function() {
 	    // get all the inputs into an array.
+			alert("boop");
+
 	    var data = $("form[name='newAccountForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
 		    return obj;
@@ -10,7 +15,7 @@ $(document).ready(function(e) {
 
 	    $.ajax({
 			method:'POST',
-			url:'http://localhost:8080/register',
+			url:'https://nwen304groupseven.herokuapp.com/register',
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
@@ -21,12 +26,11 @@ $(document).ready(function(e) {
 				console.log(data);
 			}
 		});
+	}
 
-
-	});
-
-	//this part for user login
-	$("form[name='loginForm']").submit(function() {
+			//this part for user login
+do_login = function(){
+			alert("boop boop");
 	    // get all the inputs into an array.
 	    var data = $("form[name='loginForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
@@ -35,7 +39,7 @@ $(document).ready(function(e) {
 
 	    $.ajax({
 			method:'POST',
-			url:'http://localhost:8080/login',
+			url:'https://nwen304groupseven.herokuapp.com/login',
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
@@ -47,6 +51,4 @@ $(document).ready(function(e) {
 			}
 		});
 
-	});
-
-});
+	}
