@@ -114,7 +114,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 //var search = require('.routes/search');
 
-app.use('/search', search)
+//app.use('/search', search)
 app.use('/login', login);
 //app.use('/register', register);
 
