@@ -20,8 +20,8 @@ router.post('/', function (req, res) {
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 	PS change below code*/
-	var hash = crypt('"+password+"', gen_salt('bf', 8));
-	password = hash;
+	//var hash = crypt('"+password+"', gen_salt('bf', 8));
+	//password = hash;
 	/*End hash of password*/
 
 	connection.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password], function(error, results, fields) {
