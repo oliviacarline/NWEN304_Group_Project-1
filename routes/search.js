@@ -1,33 +1,49 @@
-module.exports = function (app, pool) {
-    app.post('/search', function (request, response) {
-        let keyword = request.body.keyword;
+var express = require('express');
+var router = express.Router();
 
-        let pageData = {
-            title: 'Search Result',
-            description: "Search Result",
-            results: {
-                products: []
-            }
-        };
+var connection = require('../config/config');
 
-        let sqls = [
-            "SELECT * FROM products WHERE LOWER(productname) LIKE $1"
-        ];
+//changed from app to router. test
+router.post('/', function (req, res) {
 
-        Promise.all(sqls.map(sql => {
-            return pool.query(sql, ['%' + keyword + '%']);
-        })).then(arrayOfResult => {
-            pageData.results.products.push(...arrayOfResult[0].rows);
+	if (!req.body) return res.sendStatus(400);
 
-            response.set({
-                'Cache-Control': 'public, no-cache, must-revalidate'
-            }).render('search_results', pageData);
-        }).catch(error => {
-            pageData.error = "Database error occurred";
-            response.render('search_results', pageData);
-            console.error('[ERROR] Query error:', error.message, error.stack);
-        });
-    });
-};
+	var item = req.body.item;
+  //replace username with item
+	//var password = req.body.password;
+
+	console.log(item);
 
 
+	const results = [];
+
+	var query = connection.query("SELECT * FROM products WHERE productname=($1)", [item]);
+
+	query.on('row', (row) => {
+		results.push(row);
+	});
+
+	query.on('end', () => {
+		if(results.length > 0){
+
+				res.redirect('/');
+			}
+		}else{
+			console.log("item doesn't exit");
+			res.send({
+				"code":204,
+				"failed":"username doesn't exist"
+			});
+		}
+
+	});
+
+});
+
+//Note: Redirect page to search, if login works
+
+//ADDED
+module.exports = router;
+
+//TODO: check hash of password
+//TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
