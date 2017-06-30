@@ -15,11 +15,7 @@ do_register = function(){
 
 	    $.ajax({
 			method:'POST',
-<<<<<<< HEAD
-			url:'https://nwen304groupseven.herokuapp.com',
-=======
 			url:'https://nwen304groupseven.herokuapp.com/register',
->>>>>>> 3230bd10dae630920b8b81ca88cc3b903afe8365
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
@@ -43,11 +39,7 @@ do_login = function(){
 
 	    $.ajax({
 			method:'POST',
-<<<<<<< HEAD
-			url:'https://nwen304groupseven.herokuapp.com',
-=======
 			url:'https://nwen304groupseven.herokuapp.com/login',
->>>>>>> 3230bd10dae630920b8b81ca88cc3b903afe8365
 			contentType:'application/json',
 			dataType:'json',
 			data: JSON.stringify({
