@@ -70,8 +70,9 @@ app.configure('production', => {
 */
 //My version below
 app.use(function(req, res, next){
-  if (req.header 'x-forwarded-proto' !== 'https') {
-    return res.redirect(`https://${req.header('host')}${req.url}`);
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    var httpsVersion = ['https://nwen304groupseven.herokuapp.com', req.url].join('');
+    return res.redirect(httpsVersion);
   }else{
     return next();
   }
