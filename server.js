@@ -29,8 +29,7 @@ var credentials = {
 
 
 passport.use(new FacebookStrategy({
-    clientID:
->>>>>>> 3230bd10dae630920b8b81ca88cc3b903afe8365 "468550980177208",
+    clientID: "468550980177208",
     clientSecret: "3cb380748f6d639cd28e8238648fa224",
     callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
   },
