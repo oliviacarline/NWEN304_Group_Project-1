@@ -34,11 +34,10 @@ router.post('/', function (req, res) {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
 				console.log('login successful');
-				//res.send({
-					//"code":200,
-					//"success":"login successful"
-				//});
-				res.redirect('/');
+				res.send({
+					"code":200,
+					"success":"login successful"
+				});
 			}else{
 				console.log('incorrect password');
 				res.send({

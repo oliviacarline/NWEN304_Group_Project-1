@@ -54,6 +54,19 @@ passport.deserializeUser(function(obj, cb) {
 var express = require('express');
 var app = express();
 
+/* More https code: code from the link Adrian sent us.
+This redirects any incoming http request to the same url but with https instead.
+*/
+/*app.configure('production', => {
+  app.use((req, res, next) => {
+    if (req.header 'x-forwarded-proto' !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    else
+      next();
+  })
+});
+*/
+/* End https code */
 
 
 
@@ -115,7 +128,7 @@ var search = require('./routes/search');
 
 //app.use('/search', search)
 app.use('/login', login);
-//app.use('/register', register);
+app.use('/register', register);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
