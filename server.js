@@ -57,15 +57,16 @@ var app = express();
 /* More https code: code from the link Adrian sent us.
 This redirects any incoming http request to the same url but with https instead.
 */
-/*app.configure('production', => {
+app.configure('production', => {
   app.use((req, res, next) => {
-    if (req.header 'x-forwarded-proto' !== 'https')
+    if (req.header 'x-forwarded-proto' !== 'https') {
       res.redirect(`https://${req.header('host')}${req.url}`);
-    else
+    }else{
       next();
+    }
   })
 });
-*/
+
 /* End https code */
 
 
