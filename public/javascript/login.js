@@ -23,7 +23,7 @@ do_register = function(){
 				password:data['password']
 			}),
 			success: function(data){
-				console.log(data);
+				alert('register successful');
 			}
 		});
 	}
@@ -47,7 +47,8 @@ do_login = function(){
 				password:data['password']
 			}),
 			success: function(data){
-				console.log(data);
+				alert('login successful');
+				document.location.href = 'https://nwen304groupseven.herokuapp.com';
 			}
 		});
 
