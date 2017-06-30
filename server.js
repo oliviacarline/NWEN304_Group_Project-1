@@ -85,7 +85,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-//routes for webpages using EJS
+//routes for webpages using EJShttps://nwen304groupseven.herokuapp.com/
 app.get('/', function (req, res){
 	res.render('index');
 });
@@ -93,7 +93,7 @@ app.get('/', function (req, res){
 app.get('/loginpage', function (req, res){
 	res.render('login');
 });
-
+https://nwen304groupseven.herokuapp.com/
 app.get('/checkoutpage', function (req, res){
 	res.render('checkout');
 });
@@ -111,9 +111,9 @@ app.get('/shoppingcartpage', function (req, res){
 // need to set up login and register files first
 var login = require('./routes/login');
 var register = require('./routes/register');
-//var search = require('.routes/search');
+var search = require('.routes/search');
 
-//app.use('/search', search)
+app.use('/search', search)
 app.use('/login', login);
 //app.use('/register', register);
 
