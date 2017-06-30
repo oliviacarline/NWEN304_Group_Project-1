@@ -19,7 +19,8 @@ router.post('/', function (req, res) {
 		results.push(row);
 	});
 
-	//Hashes password using the password in db as the salt
+	/*Hashes password using the password in db as the salt
+	If they match, then the password is correct */
 	password = crypt('"+password+"', results[0]['password']);
 
 	query.on('end', () => {
@@ -52,4 +53,6 @@ router.post('/', function (req, res) {
 //ADDED
 module.exports = router;
 
-//TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
+/*TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
+Also, if password incorrect, inform user and let them try again
+*/

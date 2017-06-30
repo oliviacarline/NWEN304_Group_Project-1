@@ -37,8 +37,9 @@ router.post('/', function (req, res) {
 
 });
 
-//Check passwords match
-//Later, make it ajax call (so if pw incorrect, stays on same page)
-
+/*TODO: Check passwords match, otherwise inform user of error and
+let them try again.
+Also, make it ajax call (so stays on same page)
+*/
 //ADDED
 module.exports = router;
