@@ -18,6 +18,7 @@ router.post('/', function (req, res) {
 	PS change below code*/
 	var hash = crypt('"+password+"', gen_salt('bf', 8));
 	password = hash;
+	//Delete comment
 	/*End hash of password*/
 
 	connection.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password], function(error, results, fields) {
