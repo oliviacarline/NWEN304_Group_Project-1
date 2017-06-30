@@ -18,8 +18,13 @@ router.post('/', function (req, res) {
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 	PS change below code*/
+<<<<<<< HEAD
+	var hash = crypt('"+password+"', gen_salt('bf', 8));
+	password = hash;
+=======
 	//var hash = crypt('"+password+"', gen_salt('bf', 8));
 	//password = hash;
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 	/*End hash of password*/
 
 	const results = [];
@@ -34,6 +39,60 @@ router.post('/', function (req, res) {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
 				console.log('login successful');
+<<<<<<< HEAD
+				res.render('index');
+			}else{
+				console.log('incorrect password');
+			}
+		}else{
+			console.log("username doesn't exit");
+		}
+
+	});
+
+/*
+	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username], function(error, results, fields) {
+
+		if(error){
+			res.send({
+				"code":400,
+				"error":"error occurred"
+			});
+		}else{
+
+			query.on('row', (row) => {
+				qresults.push(row);
+			});
+
+			query.on('end', () => {
+				console.log(qresults);
+				if(qresults.length > 0){
+					if(qresults[0]['password'] == password){
+						res.send({
+							"code":200,
+							"success":"login successful"
+						});
+					}
+				}else{
+						res.send({
+							"code":204,
+							"failed":"username and password don't match"
+						});
+					}
+				});
+			}
+
+			//else{
+				//res.send({
+					//"code":204,
+					//"failed":"username doesn't exist"
+				//});
+			//}
+		//}
+
+	});
+*/
+=======
 				//res.send({
 					//"code":200,
 					//"success":"login successful"
@@ -55,6 +114,7 @@ router.post('/', function (req, res) {
 		}
 
 	});
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 
 });
 
@@ -65,3 +125,7 @@ module.exports = router;
 
 //TODO: check hash of password
 //TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
+<<<<<<< HEAD
+//TODO: express-sessions??? extra for experts
+=======
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9

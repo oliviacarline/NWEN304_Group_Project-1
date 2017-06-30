@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 html, body, #wrap {
 	height:100%;
 }
@@ -802,4 +806,8 @@ a.feedSmall {
 }
 #footer .copyright p.right {
 	float:right;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9

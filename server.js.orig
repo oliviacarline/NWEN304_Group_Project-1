@@ -2,8 +2,17 @@
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
+<<<<<<< HEAD
 var port = process.env.PORT || 8080;
 var connectionPool = require('./config/database');
+
+
+
+=======
+var app = express();
+var port = process.env.PORT || 8080;
+var connectionPool = require('./config/database');
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 /*Start https---------------------
 Testing out https - sourced mostly from link below
 https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
@@ -13,8 +22,12 @@ openssl req -new -key privatekey.pem -out certrequest.csr
 password for above = httpstestpassword
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
 */
+<<<<<<< HEAD
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
+=======
+
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 var fs = require('fs');
 var http = require('http'); //Test, if works then remove this line
 var https = require('https');
@@ -27,6 +40,7 @@ var credentials = {
   cert: certificate
 };
 
+<<<<<<< HEAD
 
 passport.use(new FacebookStrategy({
     clientID: "468550980177208",
@@ -70,6 +84,11 @@ app.use(passport.session());
 
 
 
+=======
+//Moved from top of file, down to here
+var express = require('express');
+var app = express();
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 /*End https ------------------------*/
 
 //Setup PostgreSQL db
@@ -110,11 +129,19 @@ app.get('/shoppingcartpage', function (req, res){
 // need to set up login and register files first
 var login = require('./routes/login');
 var register = require('./routes/register');
+<<<<<<< HEAD
 //var search = require('.routes/search');
 
 //app.use('/search', search)
 app.use('/login', login);
 //app.use('/register', register);
+=======
+var search = require('.routes/search')(app, connectionPool);
+
+app.use('/search', search)
+app.use('/login', login);
+app.use('/register', register);
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -127,6 +154,7 @@ app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 
+<<<<<<< HEAD
 
 
 app.get('/auth/facebook',
@@ -140,6 +168,8 @@ app.get('/auth/facebook/callback',
     res.redirect('/');
   });
 
+=======
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
 //Https Change
 //module.exports = app;
 module.exports = https;

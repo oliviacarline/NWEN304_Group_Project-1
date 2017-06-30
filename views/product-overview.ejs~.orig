@@ -18,9 +18,13 @@
       </div>
       <div id="headright" class="grid_7 prefix_5 omega">
         <p>Login or Register with:</p>
-
-              <a href="/auth/facebook" class="btn-facebook"><span class="fa fa-facebook-official"></span> Login with Facebook</a>
+<<<<<<< HEAD
+       <a href="/auth/facebook" class="btn-facebook"><span class="fa fa-facebook-official"></span> Login with Facebook</a>
 <h3 class="login"><a href="loginpage">Sign up</a> / <a href="loginpage">Login</a></h3>
+=======
+      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google+</a>
+        <h3 class="login"><a href="loginpage">Sign up</a> / <a href="loginpage">Login</a></h3>
+>>>>>>> f8df59a429f6911e16968f1a2d17108b6f7c6ce9
         <p><span class="vChart"><a href="shoppingcartpage">View Cart</a></span> <span class="cOut"><a href="checkoutpage">Checkout</a></span></p>
       </div>
     </div>
