@@ -2,7 +2,6 @@
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
-var app = express();
 var port = process.env.PORT || 8080;
 var connectionPool = require('./config/database');
 /*Start https---------------------
@@ -14,7 +13,8 @@ openssl req -new -key privatekey.pem -out certrequest.csr
 password for above = httpstestpassword
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
 */
-
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
 var fs = require('fs');
 var http = require('http'); //Test, if works then remove this line
 var https = require('https');
@@ -27,9 +27,49 @@ var credentials = {
   cert: certificate
 };
 
+
+passport.use(new FacebookStrategy({
+    clientID: "468550980177208",
+    clientSecret: "3cb380748f6d639cd28e8238648fa224",
+    callbackURL: "https://nwen304groupseven.herokuapp.com/auth/facebook/callback"
+  },
+
+
+
+  function(accessToken, refreshToken, profile, cb) {
+    return cb(null, profile);
+  }
+));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+
 //Moved from top of file, down to here
 var express = require('express');
 var app = express();
+
+
+
+
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+
+// Initialize Passport and restore authentication state, if any, from the
+// session.
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 /*End https ------------------------*/
 
 //Setup PostgreSQL db
@@ -70,11 +110,11 @@ app.get('/shoppingcartpage', function (req, res){
 // need to set up login and register files first
 var login = require('./routes/login');
 var register = require('./routes/register');
-var search = require('.routes/search')(app, connectionPool);
+//var search = require('.routes/search');
 
-app.use('/search', search)
+//app.use('/search', search)
 app.use('/login', login);
-app.use('/register', register);
+//app.use('/register', register);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -86,6 +126,19 @@ app.listen(port, function () {
  //https.createServer(credentials, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
+
+
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    
+    res.redirect('/');
+  });
 
 //Https Change
 //module.exports = app;
