@@ -117,9 +117,9 @@ app.get('/shoppingcartpage', function (req, res){
 // need to set up login and register files first
 var login = require('./routes/login');
 var register = require('./routes/register');
-//var search = require('./routes/search');
+var search = require('./routes/search');
 
-//app.use('/search', search)
+app.use('/search', search);
 app.use('/login', login);
 app.use('/register', register);
 

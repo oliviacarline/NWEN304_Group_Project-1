@@ -3,6 +3,10 @@ var router = express.Router();
 
 var connection = require('../config/config');
 
+router.get('/', function (req, res) {
+  console.log('hi');
+});
+
 //changed from app to router. test
 router.post('/', function (req, res) {
 
@@ -23,20 +27,30 @@ router.post('/', function (req, res) {
 		results.push(row);
 	});
 
-	query.on('end', () => {
-		if(results.length > 0){
 
-				res.redirect('/');
-			}
-		}else{
-			console.log("item doesn't exit");
-			res.send({
-				"code":204,
-				"failed":"username doesn't exist"
-			});
-		}
 
-	});
+  query.on('end', () => {
+    if(results.length > 0){
+      alert("we found a product");
+        console.log('login successful');
+        res.send({
+          "code":200,
+          "success":"login successful"
+        });
+
+    }else{
+      console.log("product doesn't exit");
+      res.send({
+        "code":204,
+        "failed":"product doesn't exist"
+      });
+    }
+
+  });
+
+
+
+
 
 });
 
