@@ -57,6 +57,7 @@ var app = express();
 /* More https code: code from the link Adrian sent us.
 This redirects any incoming http request to the same url but with https instead.
 */
+/*
 app.configure('production', => {
   app.use((req, res, next) => {
     if (req.header 'x-forwarded-proto' !== 'https') {
@@ -66,7 +67,15 @@ app.configure('production', => {
     }
   })
 });
-
+*/
+//My version below
+app.use(function(req, res, next){
+  if (req.header 'x-forwarded-proto' !== 'https') {
+    return res.redirect(`https://${req.header('host')}${req.url}`);
+  }else{
+    return next();
+  }
+});
 /* End https code */
 
 
@@ -138,8 +147,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Change below to https.createServer(options, app).listen(.....
 
-//app.listen(port, function () {
- https.createServer(credentials, app).listen(port, function () {
+app.listen(port, function () {
+//https.createServer(credentials, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
 
