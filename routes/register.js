@@ -12,6 +12,9 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
+	console.log(username);
+	console.log(password);
+
 
 	/*Begin hash of password
 	See this site for details
@@ -47,5 +50,3 @@ router.post('/', function (req, res) {
 
 //ADDED
 module.exports = router;
-
-//TODO: hash the password

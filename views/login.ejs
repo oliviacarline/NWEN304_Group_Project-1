@@ -23,8 +23,8 @@
       </div>
       <div id="headright" class="grid_7 prefix_5 omega">
         <p>Login or Register with:</p>
-      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Google+</a>
-        <h3 class="login"><a href="loginpage">Sign up</a> / <a href="loginpage">Login</a></h3>
+       <a href="/auth/facebook" class="btn-facebook"><span class="fa fa-facebook-official"></span> Login with Facebook</a>
+<h3 class="login"><a href="loginpage">Sign up</a> / <a href="loginpage">Login</a></h3>
         <p><span class="vChart"><a href="shoppingcartpage">View Cart</a></span> <span class="cOut"><a href="checkoutpage">Checkout</a></span></p>
       </div>
     </div>
@@ -44,7 +44,7 @@
     <div class="checkout grid_16">
       <div class="newAccount grid_8 alpha">
         <h4>Create New Account</h4>
-        <form name="newAccountForm">
+        <form name="newAccountForm" action="/register" method="post">
           <fieldset>
             <label for="username">Username: </label>
             <input type="text" tabindex="1" size="22" value="" id="username" name="username" class="text" />
@@ -58,14 +58,14 @@
             <div class="clear"></div>
           </fieldset>
           <p>
-            <input type="submit" value="Create New Account" tabindex="6" name="update" class="newAccountButton" />
+            <input type="button" value="Create New Account" tabindex="6" name="update" class="newAccountButton" onclick="do_register()"/>
           </p>
           <input type="hidden" value="30" />
         </form>
       </div>
       <div class="loginPage grid_8 omega">
         <h4>Login</h4>
-        <form name="loginForm">
+        <form name="loginForm" action="/login" method="post">
           <fieldset>
             <label for="username2">Username:</label>
             <input type="text" tabindex="1" size="50" value="" id="username2" name="username" class="text" />
@@ -76,7 +76,7 @@
             <div class="clear"></div>
           </fieldset>
           <p>
-            <input type="submit" value="Login" tabindex="3" name="update" class="userLogin" />
+            <input type="button" value="Login" tabindex="3" name="update" class="userLogin" onclick="do_login()"/>
           </p>
           <input type="hidden" value="30" />
         </form>
