@@ -12,6 +12,8 @@ openssl genrsa -out privatekey.pem 1024
 openssl req -new -key privatekey.pem -out certrequest.csr
 password for above = httpstestpassword
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
+NOTE: Maybe can delete this? All we do for https is force users to connect with it,
+don't need to worry about key and certificate.
 */
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
@@ -26,7 +28,7 @@ var credentials = {
   key: privateKey,
   cert: certificate
 };
-
+/* End https -------------------*/
 
 passport.use(new FacebookStrategy({
     clientID: "468550980177208",
@@ -49,26 +51,13 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
-
-//Moved from top of file, down to here
+//Moved from top of file, down to here. Move back up if decide to delete https code above
 var express = require('express');
 var app = express();
 
-/* More https code: code from the link Adrian sent us.
+/* More https code: (modified) code from the link Adrian sent us.
 This redirects any incoming http request to the same url but with https instead.
 */
-/*
-app.configure('production', => {
-  app.use((req, res, next) => {
-    if (req.header 'x-forwarded-proto' !== 'https') {
-      res.redirect(`https://${req.header('host')}${req.url}`);
-    }else{
-      next();
-    }
-  })
-});
-*/
-//My version below
 app.use(function(req, res, next){
   if (req.headers['x-forwarded-proto'] !== 'https') {
     var httpsVersion = ['https://nwen304groupseven.herokuapp.com', req.url].join('');
@@ -78,8 +67,6 @@ app.use(function(req, res, next){
   }
 });
 /* End https code */
-
-
 
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
@@ -91,10 +78,6 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
-/*End https ------------------------*/
 
 //Setup PostgreSQL db
 //NOTE: pg wasdeleted
@@ -130,8 +113,6 @@ app.get('/shoppingcartpage', function (req, res){
 	res.render('shoppingcart');
 });
 
-
-
 //Routes
 // need to set up login and register files first
 var login = require('./routes/login');
@@ -146,14 +127,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Change below to https.createServer(options, app).listen(.....
-
+/*Since we force connecting users to https, we don't need to modify
+the listen function below, as previously thought to
+https.createServer(options, app).listen...*/
 app.listen(port, function () {
-//https.createServer(credentials, app).listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
-
-
 
 app.get('/auth/facebook',
   passport.authenticate('facebook'));
