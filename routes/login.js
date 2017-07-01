@@ -33,7 +33,6 @@ router.post('/', function (req, res) {
 					"success":"login successful"
 				});
 			}else{
-				console.log('incorrect password');
 				res.send({
 					"code":401,
 					"failed":"username and password don't match"
