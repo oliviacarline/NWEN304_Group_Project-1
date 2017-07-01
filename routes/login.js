@@ -39,7 +39,7 @@ router.post('/', function (req, res) {
 				});
 			}
 		}else{
-			console.log("username doesn't exit");
+			console.log("username doesn't exist");
 			res.send({
 				"code":404,
 				"failed":"username doesn't exist"
