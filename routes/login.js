@@ -26,23 +26,20 @@ router.post('/', function (req, res) {
 	query.on('end', () => {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
-				console.log('login successful');
 				res.send({
 					"code":200,
 					"success":"login successful"
 				});
 			}else{
-				console.log('incorrect password');
 				res.send({
 					"code":204,
-					"failed":"username and password don't match"
+					"success":"username and password don't match"
 				});
 			}
 		}else{
-			console.log("username doesn't exit");
 			res.send({
 				"code":204,
-				"failed":"username doesn't exist"
+				"success":"username doesn't exist"
 			});
 		}
 
