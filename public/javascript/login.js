@@ -1,10 +1,13 @@
 $(document).ready(function() {
-	console.log("ready");
+
+		console.log("ready");
+
 });
 
 do_register = function(){
 	//this part for user registration
 	    // get all the inputs into an array.
+
 	    var data = $("form[name='newAccountForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
 		    return obj;
@@ -28,6 +31,7 @@ do_register = function(){
 
 			//this part for user login
 do_login = function(){
+
 	    // get all the inputs into an array.
 	    var data = $("form[name='loginForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
