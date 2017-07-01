@@ -21,7 +21,7 @@ router.post('/', function (req, res) {
 
 	/*Hashes password using the password in db as the salt
 	If they match, then the password is correct */
-	//password = crypt('"+password+"', results[0]['password']);
+	password = crypt('"+password+"', results[0]['password']);
 
 	query.on('end', () => {
 		if(results.length > 0){
@@ -32,14 +32,15 @@ router.post('/', function (req, res) {
 				});
 			}else{
 				res.send({
-					"code":204,
-					"success":"username and password don't match"
+					"code":401,
+					"failed":"username and password don't match"
 				});
 			}
 		}else{
+			console.log("username doesn't exist");
 			res.send({
-				"code":204,
-				"success":"username doesn't exist"
+				"code":404,
+				"failed":"username doesn't exist"
 			});
 		}
 
