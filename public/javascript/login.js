@@ -20,10 +20,7 @@ do_register = function(){
 				password:data['password']
 			}),
 			success: function(data){
-				alert('register successful');
-			}
-			error: function(xhr, ajaxOptions, thrownError){
-				alert(thrownError);
+				alert(data);
 			}
 		});
 	}
@@ -46,11 +43,8 @@ do_login = function(){
 				password:data['password']
 			}),
 			success: function(data){
-				alert('login successful');
+				alert(data);
 				document.location.href = 'https://nwen304groupseven.herokuapp.com';
-			}
-			error: function(xhr, ajaxOptions, thrownError){
-				alert(thrownError);
 			}
 		});
 
