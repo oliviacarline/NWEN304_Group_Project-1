@@ -1,10 +1,15 @@
 $(document).ready(function() {
+
 		console.log("ready");
+
 });
 
 do_register = function(){
 	//this part for user registration
 	    // get all the inputs into an array.
+
+			//alert("boop");
+
 	    var data = $("form[name='newAccountForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
 		    return obj;
@@ -21,12 +26,16 @@ do_register = function(){
 			}),
 			success: function(data){
 				alert(data);
+				alert('register successful');
 			}
 		});
 	}
 
 			//this part for user login
 do_login = function(){
+
+			//alert("boop boop");
+
 	    // get all the inputs into an array.
 	    var data = $("form[name='loginForm']").serializeArray().reduce(function(obj, item) {
 		    obj[item.name] = item.value;
@@ -44,6 +53,7 @@ do_login = function(){
 			}),
 			success: function(data){
 				alert(data);
+				alert('login successful');
 				document.location.href = 'https://nwen304groupseven.herokuapp.com';
 			}
 		});
