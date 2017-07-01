@@ -114,6 +114,15 @@ app.get('/shoppingcartpage', function (req, res){
 	res.render('shoppingcart');
 });
 
+app.get('/logout', function (req, res){
+  req.session.destroy(function(err) {
+     res.render('index');
+  });
+});
+
+var user = require('./routes/user');
+app.use('/dashboard', user);
+
 //Routes
 // need to set up login and register files first
 var login = require('./routes/login');

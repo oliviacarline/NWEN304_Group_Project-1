@@ -21,11 +21,13 @@ router.post('/', function (req, res) {
 
 	/*Hashes password using the password in db as the salt
 	If they match, then the password is correct */
-	password = crypt('"+password+"', results[0]['password']);
+	//password = crypt('"+password+"', results[0]['password']);
 
 	query.on('end', () => {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
+				console.log('login successful');
+				req.session.user = results[0]['username'];
 				res.send({
 					"code":200,
 					"success":"login successful"
@@ -50,7 +52,3 @@ router.post('/', function (req, res) {
 
 //ADDED
 module.exports = router;
-
-/*TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
-Also, if password incorrect, inform user and let them try again
-*/

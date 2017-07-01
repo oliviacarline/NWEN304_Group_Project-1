@@ -15,7 +15,7 @@ router.post('/', function (req, res) {
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
 	/*End hash of password*/
-	password = crypt('"+password+"', gen_salt('bf', 8));
+	//password = crypt('"+password+"', gen_salt('bf', 8));
 
 	connection.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password], function(error, results, fields) {
 
@@ -37,9 +37,4 @@ router.post('/', function (req, res) {
 
 });
 
-/*TODO: Check passwords match, otherwise inform user of error and
-let them try again.
-Also, make it ajax call (so stays on same page)
-*/
-//ADDED
 module.exports = router;
