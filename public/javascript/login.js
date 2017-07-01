@@ -48,8 +48,8 @@ do_login = function(){
 				alert(JSON.stringify(data));
 
 				if(data['code'] == 200){
-					//document.location.href = 'http://localhost:8080/';
-					document.location.href = 'https://nwen304groupseven.herokuapp.com';
+					//document.location.href = 'http://localhost:8080/dashboard';
+					//document.location.href = 'https://nwen304groupseven.herokuapp.com';
 				}
 			}
 		});
