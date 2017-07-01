@@ -25,7 +25,10 @@ do_register = function(){
 			success: function(data){
 				alert(data);
 				alert('register successful');
-			}
+			},
+    	error: function(xhr, textStatus, errorThrown){
+       alert('register failed');
+    }
 		});
 	}
 
@@ -51,7 +54,10 @@ do_login = function(){
 				alert(data);
 				alert('login successful');
 				document.location.href = 'https://nwen304groupseven.herokuapp.com';
-			}
+			},
+			error: function(xhr, textStatus, errorThrown){
+       alert('login failed');
+    }
 		});
 
 	}

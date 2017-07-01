@@ -34,14 +34,14 @@ router.post('/', function (req, res) {
 			}else{
 				console.log('incorrect password');
 				res.send({
-					"code":204,
+					"code":401,
 					"failed":"username and password don't match"
 				});
 			}
 		}else{
 			console.log("username doesn't exit");
 			res.send({
-				"code":204,
+				"code":401,
 				"failed":"username doesn't exist"
 			});
 		}
