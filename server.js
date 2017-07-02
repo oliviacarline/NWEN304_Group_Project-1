@@ -1,24 +1,24 @@
-//var express = require('express');
+var express = require('express');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 var connectionPool = require('./config/database');
+var app = express();
+
 /*Start https---------------------
-Testing out https - sourced mostly from link below
-https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
+Testing out https - sourced mostly from link https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
 Need to generate privatekey.pem and certificate.pem using the following commands:
 openssl genrsa -out privatekey.pem 1024
 openssl req -new -key privatekey.pem -out certrequest.csr
 password for above = httpstestpassword
 openssl x509 -req -in certrequest.csr -signkey privatekey.pem -out certificate.pem
-NOTE: Maybe can delete this? All we do for https is force users to connect with it,
-don't need to worry about key and certificate.
+Below, replace app.listen() with https.createServer(options, app).listen.....
+NOTE: Maybe can delete this? All we do for https is force users to connect with it, don't need to worry about key and certificate.
 */
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 var fs = require('fs');
-var http = require('http'); //Test, if works then remove this line
 var https = require('https');
 
 var privateKey = fs.readFileSync('privatekey.pem').toString();
@@ -37,8 +37,6 @@ passport.use(new FacebookStrategy({
     //callbackURL: "http://localhost:8080/auth/facebook/callback"
   },
 
-
-
   function(accessToken, refreshToken, profile, cb) {
     return cb(null, profile);
   }
@@ -52,11 +50,7 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 
-//Moved from top of file, down to here. Move back up if decide to delete https code above
-var express = require('express');
-var app = express();
-
-/* More https code: (modified) code from the link Adrian sent us.
+/* Force https: (modified) code from the link Adrian sent us.
 This redirects any incoming http request to the same url but with https instead.
 */
 app.use(function(req, res, next){
@@ -67,7 +61,6 @@ app.use(function(req, res, next){
     return next();
   }
 });
-/* End https code */
 
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
@@ -78,13 +71,6 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-//Setup PostgreSQL db
-//NOTE: pg wasdeleted
-//var client = new pg.Client(connectionString);
-//client.connect();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -137,9 +123,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*Since we force connecting users to https, we don't need to modify
-the listen function below, as previously thought to
-https.createServer(options, app).listen...*/
 app.listen(port, function () {
  console.log('Example app listening on port 8080!');
 });
@@ -151,10 +134,8 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
-
     res.redirect('/');
   });
 
-//Https Change
-//module.exports = app;
+/* Change from app to https */
 module.exports = https;
