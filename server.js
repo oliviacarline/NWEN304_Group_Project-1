@@ -155,6 +155,6 @@ app.get('/auth/facebook/callback',
     res.redirect('/');
   });
 
+module.exports = app;
 //Https Change
-//module.exports = app;
-module.exports = https;
+//module.exports = https;
