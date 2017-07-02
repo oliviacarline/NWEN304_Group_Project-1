@@ -1,9 +1,10 @@
-//var express = require('express');
+var express = require('express');
 var http = require('http');
 var path = require('path');
 var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 var connectionPool = require('./config/database');
+var app = express();
 /*Start https---------------------
 Testing out https - sourced mostly from link below
 https://stackoverflow.com/questions/5998694/how-to-create-an-https-server-in-node-js
@@ -18,7 +19,6 @@ don't need to worry about key and certificate.
 var passport = require('passport')
   , FacebookStrategy = require('passport-facebook').Strategy;
 var fs = require('fs');
-var http = require('http'); //Test, if works then remove this line
 var https = require('https');
 
 var privateKey = fs.readFileSync('privatekey.pem').toString();
@@ -51,10 +51,6 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
-
-//Moved from top of file, down to here. Move back up if decide to delete https code above
-var express = require('express');
-var app = express();
 
 /* More https code: (modified) code from the link Adrian sent us.
 This redirects any incoming http request to the same url but with https instead.
