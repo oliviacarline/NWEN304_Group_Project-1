@@ -29,7 +29,7 @@ router.post('/', function (req, res) {
 
         var description = results[0]['description'];
 
-        res.render('search_results', { item: item description: description })
+        res.render('search_results', { item: item, description: description })
 				/*res.send({
 					"code":200,
 					"success":"item found"
