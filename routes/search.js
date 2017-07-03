@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
 					"code":200,
 					"success":"item found"
 				});
-        res.redirect("/search_results.ejs");
+        res.render("search_results.ejs");
 
 		}else{
 			console.log("item not found");
