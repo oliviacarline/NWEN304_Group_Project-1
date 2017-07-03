@@ -25,18 +25,19 @@ router.post('/', function (req, res) {
 
 	query.on('end', () => {
 		if(results.length > 0){
-				console.log('login successful');
+				console.log('item found');
 				req.session.user = results[0]['item'];
 				res.send({
 					"code":200,
-					"success":"login successful"
+					"success":"item found"
 				});
+        res.redirect("/search_results.ejs");
 
 		}else{
-			console.log("username doesn't exist");
+			console.log("item not found");
 			res.send({
 				"code":404,
-				"failed":"username doesn't exist"
+				"failed":"item not found"
 			});
 		}
 
