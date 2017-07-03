@@ -3,20 +3,12 @@ var router = express.Router();
 
 var connection = require('../config/config');
 
-router.get('/', function (req, res) {
-  console.log('hi');
-});
-
 //changed from app to router. test
 router.post('/', function (req, res) {
 
 	if (!req.body) return res.sendStatus(400);
 
 	var item = req.body.item;
-  //replace username with item
-	//var password = req.body.password;
-
-	console.log(item);
 
 
 	const results = [];
@@ -27,37 +19,30 @@ router.post('/', function (req, res) {
 		results.push(row);
 	});
 
+	/*Hashes password using the password in db as the salt
+	If they match, then the password is correct */
+	//password = crypt('"+password+"', results[0]['password']);
 
+	query.on('end', () => {
+		if(results.length > 0){
+				console.log('login successful');
+				req.session.user = results[0]['item'];
+				res.send({
+					"code":200,
+					"success":"login successful"
+				});
 
-  query.on('end', () => {
-    if(results.length > 0){
-      alert("we found a product");
-        console.log('login successful');
-        res.send({
-          "code":200,
-          "success":"login successful"
-        });
+		}else{
+			console.log("username doesn't exist");
+			res.send({
+				"code":404,
+				"failed":"username doesn't exist"
+			});
+		}
 
-    }else{
-      console.log("product doesn't exit");
-      res.send({
-        "code":204,
-        "failed":"product doesn't exist"
-      });
-    }
-
-  });
-
-
-
-
+	});
 
 });
 
-//Note: Redirect page to search, if login works
-
 //ADDED
 module.exports = router;
-
-//TODO: check hash of password
-//TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
