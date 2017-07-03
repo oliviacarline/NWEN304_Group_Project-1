@@ -13,7 +13,7 @@ router.post('/', function (req, res) {
 
 	const results = [];
 
-	var query = connection.query("SELECT * FROM products WHERE productname LIKE '($1)%''", [item]);
+	var query = connection.query("SELECT * FROM products WHERE productname LIKE '($1)%'", [item]);
 
 	query.on('row', (row) => {
 		results.push(row);
