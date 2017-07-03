@@ -13,7 +13,21 @@ router.post('/', function (req, res) {
 
 	const results = [];
 
-	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username]);
+	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username], function(error, results, fields) {
+		if(error){
+			console.log("error occurred", error);
+			res.send({
+				"code":400,
+				"failed":"error occured"
+			});
+		}else{
+			console.log("success");
+			res.send({
+				"code":200,
+				"success":"query successful"
+			});
+		}
+	});
 
 	query.on('row', (row) => {
 		results.push(row);
