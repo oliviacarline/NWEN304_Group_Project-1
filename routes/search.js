@@ -37,10 +37,12 @@ router.post('/', function (req, res) {
 
 		}else{
 			console.log("item not found");
-			res.send({
+      alert("item not found");
+
+    /*  res.send({
 				"code":404,
 				"failed":"item not found"
-			});
+			});*/
 		}
 
 	});
