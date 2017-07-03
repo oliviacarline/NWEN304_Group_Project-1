@@ -38,7 +38,7 @@ router.post('/', function (req, res) {
 
 		}else{
 			console.log("item not found");
-      alert("item not found");
+      //alert("item not found");
       res.render('index.ejs');
     /*  res.send({
 				"code":404,
