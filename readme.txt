@@ -12,4 +12,4 @@
 -On register check request body exists, throw status 400 if request body is missing
 -On register check that query was successful, if error on query throw status 400
 -On login check request body exists, throw status 400 if request body is missing
--On login check that query was successful, if error on query throw status 400
+-On search check request body exists, throw status 400 if request body is missing
