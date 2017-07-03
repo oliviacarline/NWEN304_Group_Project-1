@@ -13,7 +13,21 @@ router.post('/', function (req, res) {
 
 	const results = [];
 
-	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username]);
+	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username], function(error, results, fields) {
+		if(error){
+			console.log("error occurred", error);
+			res.send({
+				"code":400,
+				"failed":"error occured"
+			});
+		}else{
+			console.log("success");
+			res.send({
+				"code":200,
+				"success":"query successful"
+			});
+		}
+	});
 
 	query.on('row', (row) => {
 		results.push(row);
@@ -21,7 +35,7 @@ router.post('/', function (req, res) {
 
 	/*Hashes password using the password in db as the salt
 	If they match, then the password is correct */
-	//password = crypt('"+password+"', results[0]['password']);
+	password = crypt('"+password+"', results[0]['password']);
 
 	query.on('end', () => {
 		if(results.length > 0){
