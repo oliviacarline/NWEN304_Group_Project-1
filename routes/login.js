@@ -21,7 +21,7 @@ router.post('/', function (req, res) {
 
 	/*Hashes password using the password in db as the salt
 	If they match, then the password is correct */
-	//password = crypt('"+password+"', results[0]['password']);
+	password = crypt('"+password+"', results[0]['password']);
 
 	query.on('end', () => {
 		if(results.length > 0){
