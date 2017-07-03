@@ -11,18 +11,11 @@ router.post('/', function (req, res) {
 
 	var username = req.body.username;
 	var password = req.body.password;
-
-	console.log(username);
-	console.log(password);
-
-
-	/*Begin hash of password
+	/*Compute hash of password, and store that instead of password.
 	See this site for details
 	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
-	PS change below code*/
-	//var hash = crypt('"+password+"', gen_salt('bf', 8));
-	//password = hash;
 	/*End hash of password*/
+	//password = crypt('"+password+"', gen_salt('bf', 8));
 
 	connection.query('INSERT INTO users(username,password) VALUES($1,$2)', [username,password], function(error, results, fields) {
 
@@ -44,9 +37,4 @@ router.post('/', function (req, res) {
 
 });
 
-//Check passwords match
-//Add gen_salt crypt('"+password+"',)
-//Later, make it ajax call (so if pw incorrect, stays on same page)
-
-//ADDED
 module.exports = router;

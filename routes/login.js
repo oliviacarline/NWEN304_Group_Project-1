@@ -11,17 +11,6 @@ router.post('/', function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
-	console.log(username);
-	console.log(password);
-
-	/*Begin hash of password
-	See this site for details
-	https://www.meetspaceapp.com/2016/04/12/passwords-postgresql-pgcrypto.html
-	PS change below code*/
-	//var hash = crypt('"+password+"', gen_salt('bf', 8));
-	//password = hash;
-	/*End hash of password*/
-
 	const results = [];
 
 	var query = connection.query("SELECT * FROM users WHERE username=($1)", [username]);
@@ -30,25 +19,29 @@ router.post('/', function (req, res) {
 		results.push(row);
 	});
 
+	/*Hashes password using the password in db as the salt
+	If they match, then the password is correct */
+	//password = crypt('"+password+"', results[0]['password']);
+
 	query.on('end', () => {
 		if(results.length > 0){
 			if(results[0]['password'] == password){
 				console.log('login successful');
+				req.session.user = results[0]['username'];
 				res.send({
 					"code":200,
 					"success":"login successful"
 				});
 			}else{
-				console.log('incorrect password');
 				res.send({
-					"code":204,
+					"code":401,
 					"failed":"username and password don't match"
 				});
 			}
 		}else{
-			console.log("username doesn't exit");
+			console.log("username doesn't exist");
 			res.send({
-				"code":204,
+				"code":404,
 				"failed":"username doesn't exist"
 			});
 		}
@@ -57,10 +50,5 @@ router.post('/', function (req, res) {
 
 });
 
-//Note: Redirect page to search, if login works
-
 //ADDED
 module.exports = router;
-
-//TODO: check hash of password
-//TODO: redirect when user logs in successfully / make EJS header for showing when user is logged in
