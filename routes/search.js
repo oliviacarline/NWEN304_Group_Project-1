@@ -28,7 +28,7 @@ router.post('/', function (req, res) {
 				console.log('item found');
 				req.session.user = results[0]['item'];
 
-        res.render('search_results', { title: 'we found a product' })
+        res.render('search_results', { item: item, })
 				/*res.send({
 					"code":200,
 					"success":"item found"
